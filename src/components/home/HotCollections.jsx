@@ -26,8 +26,9 @@ useEffect(() => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 6,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows:true
   };
   return (
     <section id="section-collections" className="no-bottom">
@@ -40,10 +41,10 @@ useEffect(() => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="slider-container">
+<div className="col-lg-12 slider-container">
       <Slider {...settings}>
-          {collections.map((item, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+          {collections.map((item) => (
+            <div  className="col-lg-12 slider-container" key={item.id ||item.code}>
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
