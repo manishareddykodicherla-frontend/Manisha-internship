@@ -6,24 +6,25 @@ import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 
 
+
+
 const ItemDetails = () => {
   const { nftId } = useParams();
   const [item, setItem] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
-      .then(({ data }) => {
-        const selectedItem = data.find(
-          (collection) => String(collection.nftId) === nftId
-        );
-
-        setItem(selectedItem);
-      });
-  }, [nftId]);
-
+Promise.all([
+  axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"),
+  axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"),
+]).then(([hot, newest]) => {
+  const allItems = [...hot.data, ...newest.data];
+  const selectedItem = allItems.find(
+    (item) => String(item.nftId) === nftId
+  );
+  setItem(selectedItem);
+});
   if (!item) return null;
-  console.log(item);
+  
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -104,6 +105,5 @@ const ItemDetails = () => {
       </div>
     </div>
   );
-};
-
+  })};
 export default ItemDetails;
