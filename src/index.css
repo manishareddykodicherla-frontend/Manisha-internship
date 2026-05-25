@@ -50,14 +50,17 @@ height:40px;}
 .slick-next{
     right:-20px;
 }
-.slick-prev:before,
-.slick-next:before{
-    color:black;
-    font-size:30px;
+
+.slider-container .slick-prev:before,
+.slider-container .slick-next:before {
+  color: #111;
+  font-size: 20px;
+  opacity: 1;
 }
-.slick-prev:before{
-    content:"<"
+
+.slider-container .slick-prev:hover,
+.slider-container .slick-next:hover {
+  background: #fff;
 }
-.slick-next:before{
-    content:">"
-}
+
+
