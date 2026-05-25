@@ -69,9 +69,9 @@ useEffect(() => {
             
           ))}
           
-    </Slider>
-    </div>
+          </Slider>
         </div>
+      </div>
       </div>
       
     </section>
