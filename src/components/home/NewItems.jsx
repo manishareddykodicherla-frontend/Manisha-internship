@@ -4,6 +4,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import {useEffect, useState} from "react";
+import Slider from "react-slick";
 const NewItems = () => {
 const [items,setItems]=useState([]);
 const fetchItems=async()=>{
@@ -19,7 +20,15 @@ catch(error)
 useEffect(()=>{
   fetchItems();
 },[]);
-
+const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows:true,
+    lazyLoad:"ondemand"
+  };
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -30,8 +39,11 @@ useEffect(()=>{
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          <div className="col-lg-12 slider-container">
+                <Slider {...settings}>
+
           {items.map((item, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id||index}>
+            <div key={item.id||index}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
@@ -86,6 +98,8 @@ useEffect(()=>{
               </div>
             </div>
           ))}
+          </Slider>
+          </div>
         </div>
       </div>
     </section>
