@@ -7,15 +7,17 @@ import Slider from "react-slick";
 import {useEffect, useState } from "react";
 
 const HotCollections = () => {
-    const [collections, setCollections] = useState([]);
+  const [collections,setCollections]=useState([])
     const fetchCollections = async () => {
       try {
-        const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
+     const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
         setCollections(response.data);
       } catch (error) {
         console.error("Error fetching collections:", error);
       }
     };
+       
+
 useEffect(() => {
     fetchCollections();
   }, []);
@@ -28,7 +30,7 @@ useEffect(() => {
     arrows:true,
     lazyLoad:"ondemand"
   };
-
+console.log(collections)
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">

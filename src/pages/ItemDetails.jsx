@@ -23,6 +23,7 @@ const ItemDetails = () => {
   }, [nftId]);
 
   if (!item) return null;
+  console.log(item);
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
