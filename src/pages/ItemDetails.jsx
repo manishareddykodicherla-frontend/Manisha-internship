@@ -71,7 +71,7 @@ Promise.all([
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{item?.creatorName}</Link>
+                          <Link to="/author">{item.authorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -88,14 +88,14 @@ Promise.all([
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{item.creatorName}</Link>
+                          <Link to="/author">{item.authorName}</Link>
                         </div>
                       </div>
                     </div>
                     <div className="spacer-40"></div>
                     <h6>Price</h6>
                     <div className="nft-item-price">
-                      <img src={item.ethImage} alt="" />
+                      <img src={EthImage} alt="" />
                       <span>{item.price}</span>
                     </div>
                   </div>

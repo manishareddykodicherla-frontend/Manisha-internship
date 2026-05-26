@@ -8,12 +8,15 @@ import {useEffect, useState } from "react";
 
 const HotCollections = () => {
   const [collections,setCollections]=useState([])
+  const [loading,setLoading]=useState[true]
     const fetchCollections = async () => {
       try {
      const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
         setCollections(response.data);
       } catch (error) {
         console.error("Error fetching collections:", error);
+      }{
+        setLoading(false)
       }
     };
        
@@ -42,6 +45,18 @@ useEffect(() => {
             </div>
           </div>
 </div>
+{loading ? (
+  <div className="col-lg-12 slider-container">
+      <Slider {...settings}>
+{new Array(4).fill(0).map((_, index)=>(
+  <div className= "nft_col" key ={index} >
+<div className="skeleton skeleton-img">
+</div>
+</div>
+))}
+</Slider>
+</div>)
+  :(
 <div className="col-lg-12 slider-container">
       <Slider {...settings}>
           {collections.map((item) => (
@@ -75,6 +90,7 @@ useEffect(() => {
           ))}
           </Slider>
         </div>
+)}
       </div>
     </section>
   );
