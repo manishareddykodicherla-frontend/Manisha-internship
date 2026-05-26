@@ -43,14 +43,14 @@ const settings = {
                 <Slider {...settings}>
 
           {items.map((item, index) => (
-            <div key={item.id||index}>
+            <div key={item.nftId||index}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
                     to={`/item-details/${item.nftId}`}
                     title={`Creator: ${item.authorName}`}
                   >
-                    <img className="lazy" src={item.authorImage} alt="" />
+                    <img className="lazy" src={item.nftImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>

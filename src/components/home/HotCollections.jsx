@@ -30,7 +30,7 @@ useEffect(() => {
     arrows:true,
     lazyLoad:"ondemand"
   };
-console.log(collections)
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -45,7 +45,7 @@ console.log(collections)
 <div className="col-lg-12 slider-container">
       <Slider {...settings}>
           {collections.map((item) => (
-            <div  key={item.id ||item.code}>
+            <div  key={item.Id ||item.code}>
               <div className="nft_coll">
                 <div className="nft_wrap">
                  <Link to={`/item-details/${item.nftId}`}>

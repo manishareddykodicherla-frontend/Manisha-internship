@@ -22,7 +22,9 @@ Promise.all([
     (item) => String(item.nftId) === nftId
   );
   setItem(selectedItem);
-});
+})
+.catch((error)=>{ console.error('Erroe fetching item details:', error)})
+},[nftId]);
   if (!item) return null;
   
   return (
@@ -105,5 +107,5 @@ Promise.all([
       </div>
     </div>
   );
-  })};
+}
 export default ItemDetails;
