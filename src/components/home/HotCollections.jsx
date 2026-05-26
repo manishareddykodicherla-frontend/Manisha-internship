@@ -45,22 +45,22 @@ useEffect(() => {
             </div>
           </div>
 </div>
-{loading ? (
   <div className="col-lg-12 slider-container">
-      <Slider {...settings}>
-{new Array(4).fill(0).map((_, index)=>(
-  <div className= "nft_col" key ={index} >
-<div className="skeleton skeleton-img">
+
+{loading ? (
+       <div className="row">
+ 
+{ new Array(4).fill(0).map((item)=>(
+  <div className= "nft_col"  >
+<div className="skeleton skeleton-img"></div>
 </div>
-</div>
+
 ))}
-</Slider>
-</div>)
-  :(
-<div className="col-lg-12 slider-container">
-      <Slider {...settings}>
+</div>
+):(
+<Slider {...settings}>
           {collections.map((item) => (
-            <div  key={item.Id ||item.code}>
+            <div  key={item.nftId}>
               <div className="nft_coll">
                 <div className="nft_wrap">
                  <Link to={`/item-details/${item.nftId}`}>
@@ -89,8 +89,9 @@ useEffect(() => {
             </div>
           ))}
           </Slider>
-        </div>
+        
 )}
+      </div>
       </div>
     </section>
   );
