@@ -7,22 +7,25 @@ import Slider from "react-slick";
 import {useEffect, useState } from "react";
 
 const HotCollections = () => {
-  const [collections,setCollections]=useState([])
-  const [loading,setLoading]=useState[true]
+  const [collections,setCollections]= useState([])
+  const [loading,setLoading]= useState(true)
     const fetchCollections = async () => {
       try {
      const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
         setCollections(response.data);
       } catch (error) {
         console.error("Error fetching collections:", error);
-      }{
+      } finally{
         setLoading(false)
       }
     };
        
 
 useEffect(() => {
-    fetchCollections();
+  setTimeout(() => {
+        fetchCollections();
+
+  }, 10000);
   }, []);
   const settings = {
     dots: true,
@@ -49,13 +52,25 @@ useEffect(() => {
 
 {loading ? (
        <div className="row">
- 
-{ new Array(4).fill(0).map((item)=>(
-  <div className= "nft_col"  >
-<div className="skeleton skeleton-img"></div>
-</div>
+ <Slider {...settings}> 
+{ new Array(4).fill(0).map((_,index) => (
+    <div className="nft_coll" key={index}>
+
+                <div className="nft_wrap">             
+<div className="skeleton skeleton-main-img"></div> 
+                </div>
+                <div className="nft_coll_pp">
+                 <div className="skeleton skeleton-author-img"></div>
+                  
+                </div>
+                <div className="nft_coll_info">
+<div className="skeleton skeleton_title"></div>        
+               <div className="skeleton skeleton-code"></div>
+                </div>
+              </div>
 
 ))}
+</Slider>
 </div>
 ):(
 <Slider {...settings}>
