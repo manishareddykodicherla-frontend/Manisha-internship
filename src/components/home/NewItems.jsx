@@ -37,6 +37,25 @@ const settings = {
     arrows:true,
     lazyLoad:"ondemand"
   };
+  const CountdownTimer=({ endTime })=>{
+    const calculateTimeLeft=()=>{
+      const difference= new Date (endTime)-new Date();
+      if (difference<=0) 
+        return "Expired";
+      const hours= Math.floor(difference/(1000*60*60));
+      const minutes= Math.floor((difference % (1000*60*60))/(1000*60));
+      const seconds= Math.floor((difference %(1000*60))/1000);
+return `${hours}h ${minutes}m ${seconds}s`;
+    };
+    const [timeLeft ,setTimeLeft]= useState(calculateTimeLeft());
+    useEffect(()=>{
+      const interval=setInterval(()=>{
+        setTimeLeft(calculateTimeLeft());
+      },1000);
+      return ()=>clearInterval(interval);
+    }, [endTime]);
+    return <span className="countdown-timer">{timeLeft}</span>;
+  }
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -90,7 +109,9 @@ const settings = {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
+                <div className="de_countdown">
+                  <CountdownTimer endTime={new Date(Date.now()+5*60*60*1000)}/>
+                </div>
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
