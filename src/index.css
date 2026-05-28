@@ -99,3 +99,48 @@
   border-radius:6px;
   text-align:center;
 }
+.skeleton-author{
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  margin-bottom :20px;
+    background : #e9e1e1c9;
+}
+.skeleton-count{
+background : #e9e1e1c9;
+width:80px;
+height:25px;
+border-radius:20px;
+position:absolute;
+right:20px;
+}
+.skeleton-image{
+  width:100%;
+  height:260px;
+  border-radius:12px;
+  background : #e9e1e1c9;
+margin-top:20px;
+}
+.skeleton-title{
+  width:70%;
+  height:18px;
+  margin-top:15px;
+  padding: 1px 8px;
+  text-align:center;
+  background : #e9e1e1c9;
+
+}
+.skeleton-price{
+  width:40%;
+  height:14px;
+  margin-top:10px;
+  background : #e9e1e1c9;
+
+}
+.skeleton-likes{
+  width:30px;
+  height:14px;
+  background : #e9e1e1c9;
+  margin-top:10px;
+
+}
