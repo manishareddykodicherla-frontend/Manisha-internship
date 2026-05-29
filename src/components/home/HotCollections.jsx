@@ -34,7 +34,17 @@ useEffect(() => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows:true,
-    lazyLoad:"ondemand"
+    lazyLoad:"ondemand",
+    responsive:[{
+      breakpoint:768,
+      settings:{
+        silesToShow:2,
+      },
+      breakpoint:480,
+      settings:{
+        silesToShow:1,
+      }
+    }]
   };
 
   return (
