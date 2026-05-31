@@ -5,6 +5,8 @@ import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import Slider from "react-slick";
+import Timer from "../Timer.jsx"
+import Internship from "../Internship.jsx"
 const NewItems = () => {
 const [items,setItems]=useState([]);
 const [loading,setLoading]= useState(true);
@@ -23,10 +25,10 @@ finally{
   setLoading(false);
 }};
 useEffect(()=>{
-  setTimeout(() => {
+   const timer=setTimeout(() => {
      fetchItems();
   }, 8000);
- 
+ return ()=> clearTimeout(timer);
 },[]);
 const settings = {
     dots: true,
@@ -35,27 +37,25 @@ const settings = {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows:true,
-    lazyLoad:"ondemand"
+    lazyLoad:"ondemand",
+    responsive:[{
+      breakpoint:768,
+      settings:{
+        slidesToShow:2,
+        slidesToScroll:1
+      }
+      
+    },
+      
+      {
+      breakpoint:480,
+      settings:{
+        slidesToShow:1,
+        slidesToScroll:1
+      }
+    }]
   };
-  const CountdownTimer=({ endTime })=>{
-    const calculateTimeLeft=()=>{
-      const difference= new Date (endTime)-new Date();
-      if (difference<=0) 
-        return "Expired";
-      const hours= Math.floor(difference/(1000*60*60));
-      const minutes= Math.floor((difference % (1000*60*60))/(1000*60));
-      const seconds= Math.floor((difference %(1000*60))/1000);
-return `${hours}h ${minutes}m ${seconds}s`;
-    };
-    const [timeLeft ,setTimeLeft]= useState(calculateTimeLeft());
-    useEffect(()=>{
-      const interval=setInterval(()=>{
-        setTimeLeft(calculateTimeLeft());
-      },1000);
-      return ()=>clearInterval(interval);
-    }, [endTime]);
-    return <span className="countdown-timer">{timeLeft}</span>;
-  }
+  
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -98,60 +98,12 @@ return `${hours}h ${minutes}m ${seconds}s`;
             <Slider {...settings}>
 
           {items.map((item, index) => (
-            <div key={item.nftId||index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to={`/item-details/${item.nftId}`}
-                    title={`Creator: ${item.authorName}`}
-                  >
-                    <img className="lazy" src={item.nftImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="de_countdown">
-                  <CountdownTimer endTime={new Date(Date.now()+5*60*60*1000)}/>
-                </div>
-
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Link to={`/item-details/${item.nftId}`}>
-                    <img
-                      src={item.nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to= '/item-details/'>
-                    <h4>{item.title}</h4>
-                  </Link>
-                  <div className="nft__item_price">{item.price} ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>{item.likes || 69}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+< Internship key={item.nftId||index}
+item={item}
+index={index}/>
+                
+                 
           ))}
           </Slider>)}
           </div>

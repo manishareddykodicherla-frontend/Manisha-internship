@@ -22,10 +22,11 @@ const HotCollections = () => {
        
 
 useEffect(() => {
-  setTimeout(() => {
+  const timer = setTimeout(() => {
         fetchCollections();
 
   }, 10000);
+ return () => clearTimeout(timer);
   }, []);
   const settings = {
     dots: true,
@@ -35,16 +36,23 @@ useEffect(() => {
     slidesToScroll: 1,
     arrows:true,
     lazyLoad:"ondemand",
-    responsive:[{
-      breakpoint:768,
-      settings:{
-        silesToShow:2,
-      },
-      breakpoint:480,
-      settings:{
-        silesToShow:1,
-      }
-    }]
+    responsive: [
+  {
+    breakpoint: 768,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+    },
+  },
+  {
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    },
+  },
+],
+
   };
 
   return (
