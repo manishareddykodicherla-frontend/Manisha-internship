@@ -27,7 +27,7 @@ finally{
 useEffect(()=>{
    const timer=setTimeout(() => {
      fetchItems();
-  }, 8000);
+  }, 2000);
  return ()=> clearTimeout(timer);
 },[]);
 const settings = {

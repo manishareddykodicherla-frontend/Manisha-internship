@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link} from "react-router-dom"
 import Timer from "./Timer.jsx";
+import "../index.css";
 export default function Internship ({item,index}) {
+
   return (
               
         
@@ -11,7 +13,7 @@ export default function Internship ({item,index}) {
      <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to={`/item-details/${item.nftId}`}
+                    to={`/author/${item.authorId}`}
                     title={`Creator: ${item.authorName}`}
                   >
                     <img className="lazy" src={item.nftImage} alt="" />
@@ -50,7 +52,7 @@ export default function Internship ({item,index}) {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to= '/item-details/'>
+                  <Link to= {`/item-details/${item.nftId}`}>
                     <h4>{item.title}</h4>
                   </Link>
                   <div className="nft__item_price">{item.price} ETH</div>

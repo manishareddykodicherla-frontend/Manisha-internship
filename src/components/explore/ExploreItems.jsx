@@ -1,13 +1,8 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import AuthorImage from "../../images/author_thumbnail.jpg";
-
 import nftImage from "../../images/nftImage.jpg";
-
-import axios from "axios"
-
+import axios from "axios";
 import {useState,useEffect} from "react";
 import "../../index.css";
 import Internship from  "../Internship";
@@ -29,7 +24,7 @@ const ExploreItems = () => {
      finally{
       setTimeout(() => {
         setLoading(false)
-      }, 8000);
+      }, 2000);
      }
      
   }
@@ -53,7 +48,7 @@ console.log("loading=",loading)
     <>
     
       <div>
-        <select id="filter-items" value="sortType"
+        <select id="filter-items" value={sortType}
         onChange={(e)=>setSortType(e.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
@@ -67,7 +62,7 @@ console.log("loading=",loading)
         <div className="row">
                        {new Array(4).fill(0).map((_, index)=>(
             <div key={index} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="nft__item">
+              <div className=" nft__item ">
                 <div className="author_list_pp">
 <div className="skeleton skeleton-author"></div>
                 </div>
@@ -99,7 +94,10 @@ console.log("loading=",loading)
           }}>
         <Internship key={item.nftId||index}
           item={item}
-          index={index}/>
+          index={index}
+          authorId={item.authorId}
+          
+          />
       </div>
       ))
     )}
