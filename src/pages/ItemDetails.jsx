@@ -4,7 +4,9 @@ import { Link , useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+AOS.init();
 
 
 
@@ -13,6 +15,9 @@ const ItemDetails = () => {
   const [item, setItem] = useState(null);
 
   useEffect(() => {
+    AOS.init({
+    duration: 1000,
+  });
 Promise.all([
   axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"),
   axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"),
@@ -28,6 +33,8 @@ Promise.all([
   if (!item) return null;
   
   return (
+    <div data-aos="fade-up">
+
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -48,11 +55,11 @@ Promise.all([
                   <div className="item_info_counts">
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i>
-                      100
+                      {item.count}
                     </div>
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      74
+                      {item.likes}
                     </div>
                   </div>
                   <p>
@@ -105,6 +112,7 @@ Promise.all([
           </div>
         </section>
       </div>
+    </div>
     </div>
   );
 }
