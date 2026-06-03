@@ -24,7 +24,7 @@ function App() {
         <Route path="/author/:authorId" element={<Author />} />
         <Route path="/item-details/:nftId" element={<ItemDetails />} />
       </Routes>
-      <Footer />
+      <Footer />zzz
     </Router>
   );
 }

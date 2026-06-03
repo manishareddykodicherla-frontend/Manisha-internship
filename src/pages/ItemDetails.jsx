@@ -9,7 +9,6 @@ import 'aos/dist/aos.css'; // You can also use <link> for styles
 
 
 
-
 const ItemDetails = () => {
   const { nftId } = useParams();
   const [item, setItem] = useState(null);
@@ -17,7 +16,8 @@ const ItemDetails = () => {
   useEffect(() => {
     AOS.init({
     duration: 1000,
-  });
+  })},[]);
+  useEffect(()=>{
 Promise.all([
   axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"),
   axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"),
