@@ -36,7 +36,7 @@ const ExploreItems = () => {
      useEffect(() => {
          AOS.init({
          duration: 1000,
-       })},[]);
+         })},[]);
      const sortedItems=[...getexplore];
      if (sortType==="price_low_to_high"){
       sortedItems.sort((a,b)=>a.price-b.price);
@@ -89,23 +89,22 @@ console.log("loading=",loading)
                             ))}
                             </div>
 ) :(
-    
-      sortedItems.slice(0,visibleItems).map((item, index) => (
-         <div data-aos="fade-up">
+    sortedItems.slice(0,visibleItems).map((item, index) => (
+         
         <div 
           className ="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          
+          key={item.nftId||index}
+          data-aos="fade-up"
           style={{display:"block",
             backgroundSize:"cover"
           }}>
-        <Internship key={item.nftId||index}
+        <Internship 
           item={item}
           index={index}
           authorId={item.authorId}
-          
           />
       </div>
-      </div>
+    
       ))
     )}
       {visibleItems < getexplore.length&&(
@@ -120,13 +119,8 @@ console.log("loading=",loading)
       </div>
       )}
       
-    
-      
-  
-
 </>
   );
-  
 };
 
 export default ExploreItems;

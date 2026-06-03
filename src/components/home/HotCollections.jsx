@@ -57,6 +57,7 @@ useEffect(() => {
 
   return (
     <section id="section-collections" className="no-bottom">
+      
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -119,13 +120,17 @@ useEffect(() => {
 
                 </div>
               </div>
+            
             </div>
+            
           ))}
           </Slider>
         
 )}
       </div>
       </div>
+      </div>
+      
     </section>
   );
 };
