@@ -3,12 +3,19 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const AuthorItems = ({nfts=[]}) => {
+useEffect(() => {
+    AOS.init({
+    duration: 1000,
+  })},[]);
   return (
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
           {nfts?.map((nft) => (
+            <div data-aos="fade-up">
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={nft.id}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -54,6 +61,7 @@ const AuthorItems = ({nfts=[]}) => {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           ))}
         </div>

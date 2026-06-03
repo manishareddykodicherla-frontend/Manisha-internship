@@ -7,6 +7,8 @@ import {useEffect, useState} from "react";
 import Slider from "react-slick";
 import Timer from "../Timer.jsx"
 import Internship from "../Internship.jsx"
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 const NewItems = () => {
 const [items,setItems]=useState([]);
 const [loading,setLoading]= useState(true);
@@ -30,6 +32,10 @@ useEffect(()=>{
   }, 2000);
  return ()=> clearTimeout(timer);
 },[]);
+useEffect(() => {
+    AOS.init({
+    duration: 1000,
+  })},[]);
 const settings = {
     dots: true,
     infinite: true,
@@ -98,11 +104,11 @@ const settings = {
             <Slider {...settings}>
 
           {items.map((item, index) => (
-            
+            <div data-aos="fade-up">
 < Internship key={item.nftId||index}
 item={item}
 index={index}/>
-                
+                </div>
                  
           ))}
           </Slider>)}

@@ -6,7 +6,8 @@ import axios from "axios";
 import {useState,useEffect} from "react";
 import "../../index.css";
 import Internship from  "../Internship";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const ExploreItems = () => {
   const [getexplore, setGetexplore] =useState([])
   const [loading, setLoading]= useState(true)
@@ -28,10 +29,14 @@ const ExploreItems = () => {
      }
      
   }
-  useEffect(()=>{
-      explore()
+    useEffect(()=>{
+    explore()
     
      },[])
+     useEffect(() => {
+         AOS.init({
+         duration: 1000,
+       })},[]);
      const sortedItems=[...getexplore];
      if (sortType==="price_low_to_high"){
       sortedItems.sort((a,b)=>a.price-b.price);
@@ -86,6 +91,7 @@ console.log("loading=",loading)
 ) :(
     
       sortedItems.slice(0,visibleItems).map((item, index) => (
+         <div data-aos="fade-up">
         <div 
           className ="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           
@@ -98,6 +104,7 @@ console.log("loading=",loading)
           authorId={item.authorId}
           
           />
+      </div>
       </div>
       ))
     )}
