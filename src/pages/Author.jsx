@@ -13,7 +13,7 @@ const Author = () => {
    const [details,SetDetails]= useState({})
     const [followers,setFollowers]=useState(details.followers||0)
 
- 
+ useEffect(()=>{
   const authorDetails=async()=>{
     try{
     const response= await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`);
@@ -23,10 +23,12 @@ console.log( "authir response:", response.data)
     catch(error){
       console.error("fetching error")
     }
-  }
-  useEffect(()=>{
-    authorDetails()
-  },[authorId,authorDetails])
+  };
+  authorDetails();
+
+ },[authorId]);
+  
+  
   useEffect(() => {
       AOS.init({
       duration: 1000,
