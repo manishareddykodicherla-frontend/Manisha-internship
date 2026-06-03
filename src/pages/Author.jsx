@@ -1,13 +1,13 @@
 import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
-import AuthorItems from "../components/author/AuthorItems";
+
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import {useParams} from "react-router-dom"
 import { useState,useEffect } from "react";
 import axios from "axios";
 import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AuthorItems from "../components/author/AuthorItems";
 const Author = () => {
   const {authorId}=useParams();
    const [details,SetDetails]= useState({})
@@ -32,9 +32,9 @@ console.log( "authir response:", response.data)
       duration: 1000,
     })},[]);
   const  followersHandle=()=>{
-  {
+  
     setFollowers((prev)=>prev+1);
-    }  
+    
   }
     
     return (
