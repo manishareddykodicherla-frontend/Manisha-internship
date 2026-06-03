@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
-import axios from "axios";
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {useEffect } from "react";
