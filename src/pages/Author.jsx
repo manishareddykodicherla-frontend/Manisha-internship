@@ -2,7 +2,7 @@ import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 
 import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+
 import {useParams} from "react-router-dom"
 import { useState,useEffect } from "react";
 import axios from "axios";
@@ -26,7 +26,7 @@ console.log( "authir response:", response.data)
   }
   useEffect(()=>{
     authorDetails()
-  },[authorId])
+  },[authorId,authorDetails])
   useEffect(() => {
       AOS.init({
       duration: 1000,
