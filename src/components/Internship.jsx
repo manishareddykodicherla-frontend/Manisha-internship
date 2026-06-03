@@ -1,30 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
-import axios from "axios";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import {useEffect } from "react";
-const AuthorItems = ({nfts=[]}) => {
-useEffect(() => {
-    AOS.init({
-    duration: 1000,
-  })},[]);
+import React from 'react'
+import { Link} from "react-router-dom"
+import Timer from "./Timer.jsx";
+import "../index.css";
+export default function Internship ({item,index}) {
+
   return (
-    <div className="de_tab_content">
-      <div className="tab-1">
-        <div className="row">
-          {nfts?.map((nft) => (
-            <div data-aos="fade-up">
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={nft.id}>
-              <div className="nft__item">
+              
+        
+          
+          
+          
+     <div className="nft__item">
                 <div className="author_list_pp">
-                  <Link to="">
-                    <img className="lazy" src={nft.nftImage} alt="" />
+                  <Link
+                    to={`/author/${item.authorId}`}
+                    title={`Creator: ${item.authorName}`}
+                  >
+                    <img className="lazy" src={item.nftImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
+                <div className="de_countdown">
+                  <Timer endTime={item.expiryDate}/>
+                </div>
+
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
@@ -43,33 +42,27 @@ useEffect(() => {
                       </div>
                     </div>
                   </div>
-                  <Link to={`/item-details/${nft.nftId}`}>
+
+                  <Link to={`/item-details/${item.nftId}`}>
                     <img
-                      src={nft.nftImage}
+                      src={item.nftImage}
                       className="lazy nft__item_preview"
                       alt=""
                     />
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to={`/item-details/${nft.nftId}`}>
-                    <h4>{nft.title}</h4>
+                  <Link to= {`/item-details/${item.nftId}`}>
+                    <h4>{item.title}</h4>
                   </Link>
-                  <div className="nft__item_price">{nft.price} ETH</div>
+                  <div className="nft__item_price">{item.price} ETH</div>
                   <div className="nft__item_like">
                     <i className="fa fa-heart"></i>
-                    <span>{nft.likes}</span>
+                    <span>{item.likes || 69}</span>
                   </div>
                 </div>
               </div>
-            </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  
-  );
-};
+            
 
-export default AuthorItems;
+  )
+}
